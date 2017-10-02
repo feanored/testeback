@@ -7,6 +7,7 @@ Created on 1 de out de 2017
 '''
 from customer_model import CustomerModel
 from conexao import Conexao
+import pymysql.err as dberror
 
 class Customer(CustomerModel):
 	def __init__(self, cpf=0, nome="", saldo=0, ativo=0):
@@ -46,6 +47,10 @@ class Customer(CustomerModel):
 			cursor.execute("SELECT LAST_INSERT_ID() as id")
 			dados = cursor.fetchone()
 			self.id_customer = dados["id"]
+		except dberror.IntegrityError:
+			txt = "O cpf/cnpj %s que você informou já está cadastrado!" %(self.cpf_cnpj)
+			txt += " Apenas um é permitido por cadastro.\n"
+			print(txt)
 		finally:
 			self.desconecta()
 
@@ -62,6 +67,10 @@ class Customer(CustomerModel):
 			cursor = self.con.get_cursor()
 			cursor.execute(sql)
 			self.con.commit()
+		except dberror.IntegrityError:
+			txt = "O cpf/cnpj %s que você informou já está cadastrado!" %(self.cpf_cnpj)
+			txt += " Apenas um é permitido por cadastro.\n"
+			print(txt)
 		finally:
 			self.desconecta()
 

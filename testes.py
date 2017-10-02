@@ -10,7 +10,7 @@ from customer import Customer
 class Testes:
 	def main(self):
 		# criando N registros
-		c1 = Customer(45612387911, "João", 580.50, True)
+		c1 = Customer(45617387911, "João 2", 2000.50, True)
 		c2 = Customer(98712387912, "Maria", 1180.50, True)
 		c3 = Customer(45678932113, "Zuleide", 700, True)
 		
