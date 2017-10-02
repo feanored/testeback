@@ -37,8 +37,7 @@ class Customer(CustomerModel):
 		sql = "INSERT INTO %s " %(self.tabela)
 		sql += "(cpf_cnpj, nm_customer, is_active, vl_total) "
 		sql += "VALUES (%s, '%s', %s, %s)" %(self.cpf_cnpj, self.nm_customer, 
-										 int(self.is_active), self.vl_total)
-		print(sql)
+			int(self.is_active), self.vl_total)
 		try:
 			self.conecta()
 			cursor = self.con.get_cursor()
@@ -82,8 +81,8 @@ class Customer(CustomerModel):
 
 	def load_from_dados(self, dados):
 		'''(Customer, dict) -> Customer'''
-		customer = Customer(int(dados["cpf_cnpj"]), dados["nm_customer"],
-							float(dados["vl_total"]), bool(dados["is_active"]))
+		customer = Customer(int(dados["cpf_cnpj"]), dados["nm_customer"], 
+					float(dados["vl_total"]), bool(dados["is_active"]))
 		customer.id_customer = dados["id_customer"]
 		return customer
 

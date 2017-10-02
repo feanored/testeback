@@ -11,10 +11,13 @@ class Testes:
 	def main(self):
 		# criando N registros
 		c1 = Customer(45612387911, "João", 580.50, True)
-		c2 = Customer(98712387911, "Maria", 1180.50, True)
-		# salvando no banco
+		c2 = Customer(98712387912, "Maria", 1180.50, True)
+		c3 = Customer(45678932113, "Zuleide", 700, True)
+		
+		# salvando no banco de dados
 		c1.save()
 		c2.save()
+		c3.save()
 
 		# obtendo clientes para cálculo da média
 		clientes = Customer().get_by_saldo(560, (1500, 2700))
@@ -28,21 +31,7 @@ class Testes:
 			print("Média Final: R$ %.2f"%(total/qtde))
 		else:
 			print("Nenhum cliente cadastrado com essas especificações!")
-
-		# outros testes, update e delete
-		print()
-		c1 = Customer(45612387911)
-		c1.get_by_cpf()
-		print(c1)
-		print()
-		c1.nm_customer = "João Paulo"
-		c1.is_active = True
-		c1.save()
-		print(c1)
-		c2 = Customer(12378945601)
-		c2.get_by_cpf()
-		c2.delete()
-
+		
 if __name__ == "__main__":
 	teste = Testes()
 	teste.main()
