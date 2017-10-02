@@ -9,3 +9,7 @@ create table tb_customer_account(
 
 select * from tb_customer_account;
 
+alter table tb_customer_account auto_increment=1500;
+
+alter table `testes`.`tb_customer_account` 
+add unique index `cpf_cnpj_unico` (`cpf_cnpj` ASC);

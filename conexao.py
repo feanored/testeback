@@ -5,19 +5,28 @@ Created on 1 de out de 2017
 
 @author: Eduardo
 '''
-import MySQLdb as db
+import pymysql as db
 
 class Conexao:
 	def __init__(self):
-		self.con = db.connect(host='localhost', user='root', passwd='koopa', db='testes')
+		'''(Conexao) -> None'''
+		self.con = db.connect(host='localhost', 
+							  user='root',
+							  passwd='koopa',
+							  db='testes',
+							  cursorclass=db.cursors.DictCursor)
 		self.cursor = None
 
-	def set_cursor(self):
-		self.cursor = self.con.cursor()
-
 	def get_cursor(self):
+		'''(Conexao) -> pymysql.cursor'''
 		if self.cursor is None:
-			self.set_cursor()
+			self.cursor = self.con.cursor()
 		return self.cursor
 
-	
+	def commit(self):
+		'''(Conexao) -> None'''
+		self.con.commit()
+
+	def close(self):
+		'''(Conexao) -> None'''
+		self.con.close()
